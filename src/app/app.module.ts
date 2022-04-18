@@ -34,6 +34,7 @@ import { HousesComponent } from './houses/houses.component';
 import { HomeFormComponent } from './home-form/home-form.component';
 import { ApartmentFormComponent } from './apartment-form/apartment-form.component';
 import { PersonComponent } from './person/person.component';
+import { PersonFormComponent } from './person-form/person-form.component';
 
 
 registerLocaleData(en);
@@ -50,7 +51,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     HousesComponent,
     HomeFormComponent,
     ApartmentFormComponent,
-    PersonComponent
+    PersonComponent,
+    PersonFormComponent
   ],
   imports: [
     BrowserModule,

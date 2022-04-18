@@ -1,0 +1,98 @@
+<nz-modal [(nzVisible)]="visible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"
+    (nzOnCancel)="handleCancel()">
+</nz-modal>
+
+
+<ng-template #modalTitle>{{formName}}</ng-template>
+
+
+
+<ng-template #modalFooter>
+    <div *ngIf="allowEdit">
+        <button nz-button nzType="primary" class="danger" nzDanger (click)="handleCancel()">Cancel</button>
+        <button nz-button nzType="primary" class="primary" (click)="handleSubmit()"
+        [nzLoading]="isConfirmModalLoading">{{confirmBtnText}}</button>
+    </div>
+</ng-template>
+
+
+<ng-template #modalContent>
+
+
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="handleSubmit()">
+        <nz-form-item *ngIf="showId">
+            <nz-form-label nzSpan="5">Id</nz-form-label>
+            <nz-form-control nzSpan="12">
+                <input nz-input formControlName="id" placeholder="0">
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label nzSpan="5" nzRequired>Name</nz-form-label>
+            <nz-form-control nzSpan="12" nzErrorTip="Please enter your name">
+                <input nz-input formControlName="name" placeholder="Vlad">
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label nzSpan="5" nzRequired>Last Name</nz-form-label>
+            <nz-form-control nzSpan="12" nzErrorTip="Please enter your last name">
+                <input nz-input formControlName="lastName" placeholder="St">
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label nzSpan="5" nzRequired>Genre</nz-form-label>
+            <nz-form-control nzSpan="12" nzErrorTip="Please select an option">
+                <nz-select id="genre" formControlName="genre" nzPlaceHolder="Select your genre">
+                    <nz-option nzValue="m" nzLabel="Male"></nz-option>
+                    <nz-option nzValue="f" nzLabel="Female"></nz-option>
+                </nz-select>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label nzSpan="5">Home Id</nz-form-label>
+            <nz-form-control nzSpan="12" >
+                <input nz-input formControlName="homeId" placeholder="3">
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label nzSpan="5" nzRequired>Home Address</nz-form-label>
+            <nz-form-control nzSpan="12" >
+                <nz-select formControlName="home" nzPlaceHolder="Select address" (nzOpenChange)="addressChanged()">
+                  <nz-option
+                    *ngFor="let home of homeList"
+                    [nzLabel]="home.address" 
+                    [nzValue]="home">
+                  </nz-option>
+                </nz-select>
+            </nz-form-control>
+        </nz-form-item>
+
+
+
+        <nz-form-item>
+            <nz-form-label nzSpan="5">Apartment Id</nz-form-label>
+            <nz-form-control nzSpan="12" >
+                <input nz-input formControlName="apartmentId" placeholder="3">
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label nzSpan="5" nzRequired>Apartment</nz-form-label>
+            <nz-form-control nzSpan="12" >
+                <nz-select formControlName="apartment" nzPlaceHolder="Select Apartment" (nzOpenChange)="apartmentChanged()">
+                  <nz-option
+                    *ngFor="let apartment of apartmentList"
+                    [nzLabel]="getApartmentMockInfo(apartment)" 
+                    [nzValue]="apartment">
+                  </nz-option>
+                </nz-select>
+            </nz-form-control>
+        </nz-form-item>
+
+        
+    </form>
+</ng-template>

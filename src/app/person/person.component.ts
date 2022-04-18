@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { ColumnItem } from '../column-item';
 import { Person } from '../person';
+import { PersonFormComponent } from '../person-form/person-form.component';
 import { PersonService } from '../person.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class PersonComponent implements OnInit {
 	people: Person[] = [];
 	visible = false;
 	isConfirmModalLoading = false;
-	// @ViewChild(ApartmentFormComponent, { static: true }) child: ApartmentFormComponent | undefined;
+	@ViewChild(PersonFormComponent, { static: true }) child: PersonFormComponent | undefined;
 
 	columnsList: ColumnItem<Person>[] = [
 		{
@@ -126,12 +127,13 @@ export class PersonComponent implements OnInit {
 				this.people = this.people.filter(element => element.id != id);
 			})
 	}
+	
 	show(person: Person): void {
-		// this.child?.viewPerson(person);
+		this.child?.viewPerson(person);
 	}
 
 	update(person: Person): void {
-		// this.child?.updatePerson(person);
+		this.child?.updatePerson(person);
 	}
 
 	/**
