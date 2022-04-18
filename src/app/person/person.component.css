@@ -1,0 +1,34 @@
+.primary {
+    margin-bottom: 10px;
+    color: #40a9ff;
+    border-color: #40a9ff;
+    background-color: white;
+}
+
+.primary:hover{
+    color: white;
+    background-color: #40a9ff;
+}
+
+.danger {
+    margin-bottom: 10px;
+    color: #ff4d4f;
+    border-color: #ff4d4f;
+    background-color: white;
+}
+
+.danger:hover{
+    color: white;
+    background-color: #ff4d4f;
+}
+
+
+
+.btn-add-div {
+    display: flex;
+    justify-content: end;
+}
+
+.delete {
+    border-color: red !important;
+}

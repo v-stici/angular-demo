@@ -1,0 +1,44 @@
+<nz-modal [(nzVisible)]="visible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"
+    (nzOnCancel)="handleCancel()">
+</nz-modal>
+
+
+<ng-template #modalTitle>{{formName}}</ng-template>
+
+
+
+<ng-template #modalFooter>
+    <div *ngIf="allowEdit">
+        <button nz-button nzType="primary" class="danger" nzDanger (click)="handleCancel()">Cancel</button>
+        <button nz-button nzType="primary" class="primary" (click)="handleSubmit()"
+        [nzLoading]="isConfirmModalLoading">{{confirmBtnText}}</button>
+    </div>
+</ng-template>
+
+
+<ng-template #modalContent>
+
+
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="handleSubmit()">
+        <nz-form-item *ngIf="showId">
+            <nz-form-label nzSpan="5">Id</nz-form-label>
+            <nz-form-control nzSpan="12">
+                <input nz-input formControlName="id" placeholder="0">
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label nzSpan="5" nzRequired>Year</nz-form-label>
+            <nz-form-control nzSpan="12" nzErrorTip="Please enter a valid year">
+                <input nz-input formControlName="year" placeholder="2010">
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label nzSpan="5" nzRequired>Address</nz-form-label>
+            <nz-form-control nzSpan="12" nzErrorTip="Please enter a valid address">
+                <input nz-input formControlName="address" placeholder="str Stefan cel Mare 103">
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+</ng-template>

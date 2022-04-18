@@ -1,0 +1,51 @@
+<div class="btn-add-div">
+    <button nz-button nzType="default" class="primary" (click)="showModal()">Add New apartment</button>
+</div>
+
+<nz-table #apartmentsTable [nzData]="apartments" nzTableLayout="fixed">
+    <thead>
+        <tr>
+            <th *ngFor="let column of columnsList" 
+            [nzSortOrder]="column.sortOrder"
+            [nzSortFn]="column.sortFn"
+            [nzSortDirections]="column.sortDirections"
+            [nzFilters]="column.listOfFilter"
+            [nzFilterMultiple]="column.filterMultiple"
+            [nzFilterFn]="column.filterFn"
+            [nzSortPriority]="column.priority"
+            >{{column.name}}
+        
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let apartment of apartmentsTable.data">
+            <td>{{apartment.id}}</td>
+            <td>{{apartment.size}}</td>
+            <td>{{apartment.rooms}}</td>
+            <td>{{apartment.phone}}</td>
+            <td>{{apartment.haveInternet}}</td>
+            <td>{{apartment.home.address}}</td>
+
+            <td>
+                <nz-space>
+                    <button class="delete" nz-button nzType="default" (click)="deleteById(apartment.id)" *nzSpaceItem>
+                    <i nz-icon nzType="delete" nzTheme="twotone" [nzTwotoneColor]="'red'"></i>
+                </button>
+                <button class="view" nz-button nzType="default" (click)="show(apartment)" *nzSpaceItem>
+                    <i nz-icon nzType="eye" nzTheme="outline"></i>
+                </button>
+                <button class="view" nz-button nzType="default" (click)="update(apartment)" *nzSpaceItem>
+                    <i nz-icon nzType="edit" nzTheme="outline"></i>
+                </button>
+            </nz-space>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
+
+
+<app-apartment-form [visible]="visible" 
+                (visibilityEvent)="updateVisibility($event)" 
+                (submitEvent)="submit($event)">
+</app-apartment-form>

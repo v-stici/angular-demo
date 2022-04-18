@@ -1,0 +1,49 @@
+<div class="btn-add-div">
+    <button nz-button nzType="default" class="primary" (click)="showModal()">Add New Home</button>
+</div>
+
+
+<nz-table #housesTable [nzData]="houses" nzTableLayout="fixed">
+    <thead>
+        <tr>
+            <th *ngFor="let column of columnsList" 
+            [nzSortOrder]="column.sortOrder"
+            [nzSortFn]="column.sortFn"
+            [nzSortDirections]="column.sortDirections"
+            [nzFilters]="column.listOfFilter"
+            [nzFilterMultiple]="column.filterMultiple"
+            [nzFilterFn]="column.filterFn"
+            [nzSortPriority]="column.priority"
+            >{{column.name}}
+        
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let home of housesTable.data">
+            <td>{{home.id}}</td>
+            <td>{{home.year}}</td>
+            <td>{{home.address}}</td>
+            <td>
+                <nz-space>
+
+                    <button class="delete" nz-button nzType="default" (click)="deleteById(home.id)" *nzSpaceItem>
+                    <i nz-icon nzType="delete" nzTheme="twotone" [nzTwotoneColor]="'red'"></i>
+                </button>
+                <button class="view" nz-button nzType="default" (click)="show(home)" *nzSpaceItem>
+                    <i nz-icon nzType="eye" nzTheme="outline"></i>
+                </button>
+                <button class="view" nz-button nzType="default" (click)="update(home)" *nzSpaceItem>
+                    <i nz-icon nzType="edit" nzTheme="outline"></i>
+                </button>
+            </nz-space>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
+
+<!-- [submit]="submit" -->
+<app-home-form [visible]="visible" 
+                (visibilityEvent)="updateVisibility($event)" 
+                (submitEvent)="submit($event)">
+</app-home-form>

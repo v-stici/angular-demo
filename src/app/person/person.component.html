@@ -1,0 +1,51 @@
+<div class="btn-add-div">
+    <button nz-button nzType="default" class="primary" (click)="showModal()">Add New Person</button>
+</div>
+
+<nz-table #peopleTable [nzData]="people" nzTableLayout="fixed">
+    <thead>
+        <tr>
+            <th *ngFor="let column of columnsList" 
+            [nzSortOrder]="column.sortOrder"
+            [nzSortFn]="column.sortFn"
+            [nzSortDirections]="column.sortDirections"
+            [nzFilters]="column.listOfFilter"
+            [nzFilterMultiple]="column.filterMultiple"
+            [nzFilterFn]="column.filterFn"
+            [nzSortPriority]="column.priority">
+            {{column.name}}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let person of peopleTable.data">
+            <td>{{person.id}}</td>
+            <td>{{person.name}}</td>
+            <td>{{person.lastName}}</td>
+            <td>{{person.genre}}</td>
+            <td>{{person.apartment.home.address}}</td>
+            <td>{{person.apartment.haveInternet}}</td>
+            <td>{{person.apartment.phone}}</td>
+
+            <td>
+                <nz-space>
+                    <button class="delete" nz-button nzType="default" (click)="deleteById(person.id)" *nzSpaceItem>
+                    <i nz-icon nzType="delete" nzTheme="twotone" [nzTwotoneColor]="'red'"></i>
+                </button>
+                <button class="view" nz-button nzType="default" (click)="show(person)" *nzSpaceItem>
+                    <i nz-icon nzType="eye" nzTheme="outline"></i>
+                </button>
+                <button class="view" nz-button nzType="default" (click)="update(person)" *nzSpaceItem>
+                    <i nz-icon nzType="edit" nzTheme="outline"></i>
+                </button>
+            </nz-space>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
+
+<!-- 
+<app-apartment-form [visible]="visible" 
+                (visibilityEvent)="updateVisibility($event)" 
+                (submitEvent)="submit($event)">
+</app-apartment-form> -->
