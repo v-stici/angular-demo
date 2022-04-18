@@ -2,7 +2,7 @@
     <button nz-button nzType="default" class="primary" (click)="showModal()">Add New apartment</button>
 </div>
 
-<nz-table #apartmentsTable [nzData]="apartments" nzTableLayout="fixed">
+<nz-table #apartmentsTable [nzData]="apartments" nzTableLayout="fixed" nzHideOnSinglePage>
     <thead>
         <tr>
             <th *ngFor="let column of columnsList" 

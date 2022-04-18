@@ -3,7 +3,7 @@
 </div>
 
 
-<nz-table #housesTable [nzData]="houses" nzTableLayout="fixed">
+<nz-table #housesTable [nzData]="houses" nzTableLayout="fixed" nzHideOnSinglePage>
     <thead>
         <tr>
             <th *ngFor="let column of columnsList" 

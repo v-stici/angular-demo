@@ -1,4 +1,11 @@
 <div class="btn-add-div">
+    <nz-input-group  nzSearch [nzAddOnAfter]="suffixIconButton">
+        <input type="text" nz-input placeholder="input search text" [(ngModel)]="searchValue" />
+      </nz-input-group>
+      <ng-template #suffixIconButton>
+        <button nz-button nzType="primary" nzSearch (click)="search()" ><i nz-icon nzType="search"></i></button>
+      </ng-template>
+      
     <button nz-button nzType="default" class="primary" (click)="showModal()">Add New Person</button>
 </div>
 

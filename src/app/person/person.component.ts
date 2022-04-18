@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { ColumnItem } from '../column-item';
 import { Person } from '../person';
@@ -15,6 +15,9 @@ export class PersonComponent implements OnInit {
 	visible = false;
 	isConfirmModalLoading = false;
 	@ViewChild(PersonFormComponent, { static: true }) child: PersonFormComponent | undefined;
+
+	searchValue!: string | undefined;
+	
 
 	columnsList: ColumnItem<Person>[] = [
 		{
@@ -134,6 +137,11 @@ export class PersonComponent implements OnInit {
 
 	update(person: Person): void {
 		this.child?.updatePerson(person);
+	}
+
+	search(): void {
+		console.log(this.searchValue);
+		this.searchValue = '';
 	}
 
 	/**

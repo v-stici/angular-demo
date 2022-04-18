@@ -26,7 +26,11 @@
 
 .btn-add-div {
     display: flex;
-    justify-content: end;
+    justify-content: space-around;
+}
+
+.inpp {
+    width: 200px;
 }
 
 .delete {
